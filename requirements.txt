@@ -1,0 +1,32 @@
+# Core DL framework
+tensorflow==2.12.0
+
+# Data handling
+pandas
+numpy
+scipy
+pyYAML
+python-box==6.0.2
+joblib
+tqdm
+ensure==1.0.2
+types-PyYAML
+
+# Visualization
+matplotlib
+seaborn
+
+# MLOps & Tracking
+mlflow==2.2.2
+dvc
+dagshub
+
+# File download helper
+gdown
+
+# API for deployment
+Flask
+Flask-Cors
+
+# Local package (editable mode)
+-e .
