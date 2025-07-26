@@ -1,0 +1,34 @@
+schema: '2.0'
+stages:
+  get_data:
+    cmd: python pipeline/stage1.py
+    deps:
+    - path: pipeline/stage1.py
+      hash: md5
+      md5: c83a440c8a7ca2549d2cfd7c21303b62
+      size: 419
+    outs:
+    - path: data/raw/housing.csv
+      hash: md5
+      md5: 80b0e92e866a6b6343522f3593f8c605
+      size: 1915790
+  split_data:
+    cmd: python pipeline/stage2.py
+    deps:
+    - path: data/raw/housing.csv
+      hash: md5
+      md5: 80b0e92e866a6b6343522f3593f8c605
+      size: 1915790
+    - path: pipeline/stage2.py
+      hash: md5
+      md5: cbbd136a60b21d2edb72e8c4002d6604
+      size: 704
+    outs:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: 2d5f646e06682146357ebfb9753005a7
+      size: 381511
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 769977a298f1bbfed078b974c07203b1
+      size: 1528655
