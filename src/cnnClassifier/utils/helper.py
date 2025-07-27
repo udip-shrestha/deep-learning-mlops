@@ -6,7 +6,7 @@ import joblib
 import yaml
 
 from pathlib import Path
-from typing import Any, List
+from typing import Any
 from ensure import ensure_annotations
 from box import ConfigBox
 from box.exceptions import BoxValueError
@@ -27,14 +27,15 @@ def read_yaml(path_to_yaml: Path) -> ConfigBox:
         logger.error(f"Error reading YAML file: {e}")
         raise e
 
-
 @ensure_annotations
-def create_directories(paths: List[Path], verbose: bool = True) -> None:
+def create_directories(paths: list, verbose: bool = True) -> type(None):
     """Create multiple directories from a list of Path objects."""
     for path in paths:
         os.makedirs(path, exist_ok=True)
         if verbose:
             logger.info(f"Created directory at: {path}")
+
+
 
 
 @ensure_annotations

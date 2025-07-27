@@ -1,25 +1,25 @@
 stages:
   get_data:
     cmd: python pipeline/stage1.py
-    # deps:
-    #   - pipeline/stage1.py
+    deps:
+      - pipeline/stage1.py
     outs:
       - data/raw/housing.csv
 
   split_data:
     cmd: python pipeline/stage2.py
-    # deps:
-    #   - pipeline/stage2.py
-    #   - data/raw/housing.csv
+    deps:
+      - pipeline/stage2.py
+      - data/raw/housing.csv
     outs:
       - data/processed/train.csv
       - data/processed/test.csv
 
   train_model:
     cmd: python pipeline/stage3.py
-    # deps:
-    #   - pipeline/stage3.py
-    #   - data/processed/train.csv
-    #   - data/processed/test.csv
+    deps:
+      - pipeline/stage3.py
+      - data/processed/train.csv
+      - data/processed/test.csv
     outs:
       - models/linear_regression.joblib
