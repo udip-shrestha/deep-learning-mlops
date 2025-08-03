@@ -16,3 +16,10 @@ prepare_base_model:
 training:
   root_dir: artifacts/training
   trained_model_path: artifacts/training/model.h5
+
+evaluation:
+  root_dir: artifacts/evaluation
+  path_of_model: artifacts/training/model.h5
+  training_data: artifacts/data_ingestion/EuroSAT
+  mlflow_uri: https://dagshub.com/udipsth1/deep-learning-mlops.mlflow
+

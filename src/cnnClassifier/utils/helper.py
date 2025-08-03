@@ -38,12 +38,20 @@ def create_directories(paths: list, verbose: bool = True) -> type(None):
 
 
 
-@ensure_annotations
+# @ensure_annotations
+# def save_json(path: Path, data: dict) -> None:
+#     """Save dictionary data to a JSON file."""
+#     with open(path, "w") as f:
+#         json.dump(data, f, indent=4)
+#     logger.info(f"JSON file saved at: {path}")
+
+
+# @ensure_annotations
 def save_json(path: Path, data: dict) -> None:
-    """Save dictionary data to a JSON file."""
     with open(path, "w") as f:
         json.dump(data, f, indent=4)
     logger.info(f"JSON file saved at: {path}")
+
 
 
 @ensure_annotations
