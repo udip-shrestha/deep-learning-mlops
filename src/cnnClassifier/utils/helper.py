@@ -4,6 +4,7 @@ import json
 import base64
 import joblib
 import yaml
+from typing import Union
 
 from pathlib import Path
 from typing import Any
@@ -85,11 +86,10 @@ def get_size(path: Path) -> str:
     return f"~ {size_in_kb} KB"
 
 
-@ensure_annotations
-def decode_image(img_base64: str, file_path: Path) -> None:
-    """Decode base64 string and save as an image file."""
+def decode_image(img_base64: str, file_path: Union[str, Path]) -> None:
+    file_path = Path(file_path)
     img_data = base64.b64decode(img_base64)
-    with open(file_path, 'wb') as f:
+    with open(file_path, "wb") as f:
         f.write(img_data)
     logger.info(f"Image decoded and saved at: {file_path}")
 
