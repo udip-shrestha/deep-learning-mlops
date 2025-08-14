@@ -1,19 +1,23 @@
-FROM python:3.8-slim-bullseye
+# runtime image for your app
+FROM python:3.11-slim
 
-# Install dependencies and AWS CLI v2
-RUN apt update -y && apt install -y \
-    curl \
-    unzip \
-    && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
-    && unzip awscliv2.zip \
-    && ./aws/install \
-    && rm -rf awscliv2.zip aws \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-COPY . /app
-RUN pip install -r requirements.txt
+# only if you need OS packages; keep minimal
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates \
+ && rm -rf /var/lib/apt/lists/*
 
-CMD ["python3", "app.py"]
+# install Python deps first for better cache
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# copy app code last
+COPY . .
+
+# expose only if your app serves HTTP; adjust as needed
+# EXPOSE 8080
+CMD ["python", "app.py"]
