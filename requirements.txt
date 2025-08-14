@@ -29,4 +29,4 @@ Flask
 Flask-Cors
 
 # Local package (editable mode)
--e .
+# -e .
